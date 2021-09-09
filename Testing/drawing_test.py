@@ -3,10 +3,6 @@ Testing how to draw stuff.
 """
 import arcade
 
-# Open a window
-arcade.open_window(600, 600, "Drawing Example")
-import arcade
-
 # Open up a window.
 # From the "arcade" library, use a function called "open_window"
 # Set the window title to "Drawing Example"
