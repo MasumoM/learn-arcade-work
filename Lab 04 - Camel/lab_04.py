@@ -1,60 +1,77 @@
-# " 'for loops' - when you know how many times to loop
-# 'while' - until a condition
+import random
 
-for star_count in range(10, -1, -1):
-    print(star_count )
-
-
-print("the second test")
-for item in [2, 6, 4, 2, 4, 6, 7, 4]:
-    print(item)
-
-print("The third test")
-# What does this print? Why?
-for i in range(12):
-    print("a")
-for j in range(12):
-    print("b")
-
-
-for hour in range(1, 13):
-    for minute in range(60):
-        print(hour, minute)
-
-total = 0
-for i in range(5):
-    new_number = int(input("Enter a number: " ))
-    total = total + new_number
-print("The total is: ", total)
+for i in range(20):
+    my_number = random.randrange(1, 6)
+    print(my_number)
 
 for i in range(5):
-    print("Hello")
+    my_number = random.randrange(5)
+    if my_number == 0:
+        print("Dragon")
+    else:
+        print("No Dragon")
 
-print("there")
+my_number = random.randrange(5)
+if my_number == 0:
+    print("Dragon")
+else:
+    print("No Dragon")
 
-for i in range(5):
-    print("Hello")
 
-print("there")
+# You get a random floating point
+my_number = random.random()
+print("my_number * 9 - 1")
 
-a = 0
-for i in range(10):
-    a = a + 1
-for j in range(10):
-    a = a + 1
-print(a)
+# Quick review:
 
-# For loops
-for i in range(10):
-    print(i)
-# You only use range in 'For Loops'
-i = 0
-while i < 10:
-    print(i)
-    i += 1
+# Write a function called count_up that takes in two numbers.
+# prints all the numbers from the start to finish inclusive.
+# Test with 5, 10
 
-# While loop that starts with ten and end at zero
-i = 1
-while i >= 0:
-    print(i)
-    i -= 1
+def count_up(start, end):
+    for number in range(start, end + 1):
+        print(number)
+
+count_up(5, 10)
+# This worked and counted 5 6 7 8 9 10
+
+quit = "n"
+while quit.lower() == "n" or quit.lower() == "no":
+    quit = input("Do you want to quit? ")
+
+done = False
+
+while done = False:
+    quit = input("Do you want to quit? ")
+    if quit.lower() == "y":
+        done = True
+        print("Bye!")
+        break
+
+
+    attack = input("Do you want to attack the dragon? ")
+    if attack.lower() == "y":
+        done = True
+        print("Bad choice, you died!")
+
+import random
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
