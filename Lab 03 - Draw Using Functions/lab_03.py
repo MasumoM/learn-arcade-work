@@ -8,7 +8,7 @@ SCREEN_HEIGHT = 600
     # The Sun
 def draw_sun():
     # Sun
-    arcade.draw_circle_filled(300, 200, 110, arcade.color.ORANGE)
+    arcade.draw_circle_filled(x, y,  arcade.color.ORANGE)
 
     # Draw the ground
 def draw_lake():
@@ -67,21 +67,21 @@ def draw_birds():
 
 def draw_clouds(x, y):
     # The Left Cloud
-    arcade.draw_circle_filled(500 + x, 497 + y, 20, arcade.color.WHITE,)
+    arcade.draw_circle_filled(x, y, 20, arcade.color.WHITE,)
 
 def draw_cloud(x, y):
     # Middle Cloud
-    arcade.draw_circle_filled(575 + x, 500 + y, 25, arcade.color.WHITE, num_segments=32)
+    arcade.draw_circle_filled(x, y, 25, arcade.color.WHITE, num_segments=32)
 
 def draw_small_cloud(x, y):
-    arcade.draw_circle_filled(500 + x, 497 + y, 10, arcade.color.WHITE, num_segments=32)
+    arcade.draw_circle_filled(x, y, 10, arcade.color.WHITE, num_segments=32)
 
 def main():
     arcade.open_window(SCREEN_WIDTH, SCREEN_HEIGHT, "Drawing with Functions")
     arcade.set_background_color(arcade.color.SKY_BLUE)
     arcade.start_render()
 
-    draw_sun()
+    draw_sun(300, 200)
     draw_lake()
     draw_birds()
     draw_clouds(50, 0)
