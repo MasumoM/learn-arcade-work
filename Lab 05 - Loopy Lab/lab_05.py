@@ -14,6 +14,45 @@ def draw_section_outlines():
     arcade.draw_rectangle_outline(750, 450, 300, 300, arcade.color.BLACK)
     arcade.draw_rectangle_outline(1050, 450, 300, 300, arcade.color.BLACK)
 
+# Explore this
+
+#1: Pyramid from 10 - 54
+print("Number 1: Pyramid")
+n = 10
+for row in range (10):
+    for column in range(row):
+        print (n, end=" ")
+        n += 1
+    print()
+print()
+#2: Print a Box of N Size
+print("Number 2: Print a Box of N Size")
+n = input("How big do you want your box (enter a digit)?")
+n = int(n)
+for top in range (1):
+  for column in range (n*2):
+    print("o", end="")
+print()
+
+for middle in range(n*2-2):
+  for j in range (1):
+    print("o", end="")
+  for j in range (n*2-2):
+    print(" ", end="")
+  for j in range (1):
+    print("o", end="")
+  print()
+
+for bottom in range (1):
+  for column in range (n*2):
+    print("o", end="")
+
+#To here
+
+
+
+
+
 
 def draw_section_1():
     for row in range(30):

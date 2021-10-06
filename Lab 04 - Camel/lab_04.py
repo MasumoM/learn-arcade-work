@@ -3,7 +3,7 @@
 import random
 
 # Introduction to the game
-print("Welcome to rush")
+print("Welcome to RUSH")
 print("You have stolen a top secret fighter jet from the Russian Air force you are making you way to the US ship.")
 print("The Russian fighters are chasing you, they want to shut you down!")
 print("Outrun the Russian fighter pilots and survive the rush")
@@ -37,6 +37,12 @@ while not done:
         done = True
         print("Exiting Game. Say hallo to heaven!")
 
+    elif userInput.upper() == "B" * 3:
+        engine_heat = 50
+        fuel_left = 0
+        g_force_sickness = 50
+        done = True
+
     # Status update
     elif userInput.upper() == "E":
         print("Miles traveled:", milesTraveled)
@@ -59,17 +65,17 @@ while not done:
 
     # Continuing Moderate speed!!!
     elif userInput.upper() == "C":
-        milesTraveled = random.randrange(5, 13)
+        milesTraveled = random.randrange(8, 17)
         milesTraveled += milesTraveled
-        g_force_sickness += 1
-        engine_heat += 1
-        russiansTraveled += random.randrange(7, 15)
+        g_force_sickness -= 1
+        engine_heat -= 1
+        russiansTraveled += random.randrange(2, 5)
         radarJam = random.randrange(20)
         if radarJam == 10:
             print("Radar Jam range coming up")
             g_force_sickness = 0
             engine_heat = 0
-            fuel_left = 3
+            fuel_left = 8
             print("As you continue to escape the radar jam becomes available!")
             print("you Jam their Radar and rest")
             print("The engine is cooled down")
@@ -85,9 +91,8 @@ while not done:
         miles = random.randrange(10, 21)
         milesTraveled += miles
         g_force_sickness += 1
-        fuel_left += random.randrange(1, 4)
+        fuel_left += random.randrange(0, 5)
         russiansTraveled += random.randrange(7, 15)
-        print("The Russians have picked up your radar signal again!.")
         radarJam = random.randrange(20)
         if radarJam == 10:
             g_force_sickness = 0
@@ -99,18 +104,22 @@ while not done:
             print("The Russians are not giving up!")
             print()
 
+        if milesTraveled >= 200:
+            print("Welcome to USS Ferrari captain great flying, you lost the Russians")
+            print("YOU WIN!!!")
+            print()
+            done = True
+
         else:
             print("You Push ahead full speed hopping to reach the Ship, moving a total of", milesTraveled, "miles")
             print("Your sickness is increasing.")
             print()
             print("The Russians continue to chase you.")
             print()
-            print("Do something about it")
-            print()
     # Reduce G- force to survive
     elif userInput.upper() == "A":
         if fuel_left > 0:
-            fuel_left -= 1
+            fuel_left += 1
             g_force_sickness = 1
             print("You reduce the Gs")
             print("you are able to rest your body and cool dow the engine")
@@ -123,46 +132,54 @@ while not done:
 
     # This is status check code
     # G force sickness and tolerance
-        if g_force_sickness > 5:
-            print("You passed out and crashed the Jet! Straight out of the sky")
-            print("Game Over.")
-            print()
+    if g_force_sickness > 8:
+        print("You passed out and crashed the Jet! Straight out of the sky")
+        print("Game Over.")
+        print()
 
-            done = True
+        done = True
     elif g_force_sickness > 4:
         print("G force tolerance is low")
 
     # Check for the distance the player traveled and progress to win
 
-    if milesTraveled >= 300:
+    if milesTraveled >= 1000:
         print("Welcome to USS Ferrari captain great flying, you lost the Russians")
-        print("You Win")
+        print("YOU WIN!!!")
         print()
         done = True
 
 # Engine Heat and  the life of the Jet
-    if engine_heat < 8:
+    if engine_heat >= 8:
         print("Your Engine exploded from overheating!!!")
         print("With no Jet You ejected and froze to death!!")
         print("After only four minutes outside the jet")
-        print("Game over")
+        print("GAME OVER !!!")
         print()
         done = True
 
-    elif engine_heat <= 5:
+    elif engine_heat >= 5:
         print("Your engine is overheating")
-        print("It's exploded and took you out")
+        print("return the engine to the green zone to make sure it doesn't explode")
         print()
-        print()
+
+    elif fuel_left >= 2:
+        print("You are running out of fuel")
+
+    elif fuel_left >= 0:
+        print("You ran out of fuel")
+        done = True
+
     # The Russians distance from your Jet
-    if milesTraveled - russiansTraveled <= 0:
-        print("The natives have caught with your Jet / well their Jet")
+    if milesTraveled - russiansTraveled <= 1:
+        print("The Russians have caught your Jet / well their Jet")
         print("They shoot you down and return back to base. oops!")
-        print("Game Over.")
+        print()
+        print("GAME OVER!!!.")
         print()
         done = True
 
-    elif milesTraveled - russiansTraveled < 15:
+    elif milesTraveled - russiansTraveled < 10:
         print("You see Russian aircraft getting closer on the Radar.")
         print("The Russians are getting very very close close!!")
         print()
