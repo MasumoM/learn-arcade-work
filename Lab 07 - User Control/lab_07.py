@@ -32,7 +32,6 @@ class Ball:
                 arcade.play_sound(self.laser_sound)
 
     def draw(self):
-        """ Draw the balls with the instance variables we have. """
         arcade.draw_circle_filled(self.position_x,
                                   self.position_y,
                                   self.radius,
@@ -58,24 +57,19 @@ class Ball:
 
 
 class MyGame(arcade.Window):
-
     def __init__(self, width, height, title):
 
         # Call the parent class's init function
         super().__init__(width, height, title)
-
-        # Make the mouse disappear when it is over the window.
+        # This makes the mouse disappear when it is over the window.
         # So we just see our object, not the pointer.
         self.set_mouse_visible(False)
 
-        arcade.set_background_color(arcade.color.ASH_GREY)
-
+        arcade.set_background_color((8, 13, 38))
         # Create our ball
-        self.ball = Ball(50, 50, 0, 0, 15, arcade.color.AUBURN)
-
+        self.ball = Ball(50, 50, 0, 0, 25, arcade.color.BRIGHT_PINK)
         # Get a list of all the game controllers that are plugged in
         joysticks = arcade.get_joysticks()
-
         # If we have a game controller plugged in, grab it and
         # make an instance variable out of it.
         if joysticks:
@@ -86,35 +80,41 @@ class MyGame(arcade.Window):
             self.joystick = None
 
     def on_draw(self):
-
-        """ Called whenever we need to draw the window. """
         arcade.start_render()
         self.ball.draw()
 
-    def update(self, delta_time):
+    def on_mouse_motion(self, x, y, dx, dy):
+        self.ball.position_x = x
+        self.ball.position_y = y
 
+    def update(self, delta_time):
         # Update the position according to the game controller
         if self.joystick:
-
-            # Set a "dead zone" to prevent drive from a centered joystick
+            # "dead zone"
             if abs(self.joystick.x) < DEAD_ZONE:
                 self.ball.change_x = 0
             else:
                 self.ball.change_x = self.joystick.x * MOVEMENT_SPEED
 
-            # Set a "dead zone" to prevent drive from a centered joystick
+            # "dead zone"
             if abs(self.joystick.y) < DEAD_ZONE:
                 self.ball.change_y = 0
             else:
                 self.ball.change_y = -self.joystick.y * MOVEMENT_SPEED
 
         self.ball.update()
-
+# Monkey eating bananas
 
 def main():
-    window = MyGame(640, 480, "Drawing Example")
+    window = MyGame(640, 480, "The bouncy ball")
     arcade.run()
 
+import arcade
 
+arcade.open_window(300, 300, "Sound Demo")
+laser_sound = arcade.load_sound(":resources:sounds/fall2.wav")
+arcade.play_sound(laser_sound)
+arcade.run()
 
 main()
+

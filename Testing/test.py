@@ -6,9 +6,7 @@ SCREEN_HEIGHT = 480
 
 class Ball:
     def __init__(self, position_x, position_y, change_x, change_y, radius, color):
-        """ Constructor. """
-
-        # Take the parameters of the init function above, and create instance variables out of them.
+        # This Takes the parameters of the init function above, and create instance variables out of them.
         self.position_x = position_x
         self.position_y = position_y
         self.change_x = change_x
@@ -35,9 +33,7 @@ class Ball:
         if self.position_y > SCREEN_HEIGHT - self.radius:
             self.change_y *= -1
 
-
 class MyGame(arcade.Window):
-
     def __init__(self, width, height, title):
 
         super().__init__(width, height, title)
@@ -58,6 +54,8 @@ class MyGame(arcade.Window):
         for ball in self.ball_list:
             ball.draw()
 
+
+
     def update(self, delta_time):
         for ball in self.ball_list:
             ball.update()
@@ -69,5 +67,4 @@ def main():
         window = MyGame(640, 480, "Drawing Example")
 
         arcade.run()
-
     main()
