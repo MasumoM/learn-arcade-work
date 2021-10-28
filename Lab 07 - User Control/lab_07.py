@@ -61,17 +61,13 @@ class MyGame(arcade.Window):
 
         # Call the parent class's init function
         super().__init__(width, height, title)
-        # This makes the mouse disappear when it is over the window.
-        # So we just see our object, not the pointer.
         self.set_mouse_visible(False)
 
         arcade.set_background_color((8, 13, 38))
-        # Create our ball
+        # Create ball
         self.ball = Ball(50, 50, 0, 0, 25, arcade.color.BRIGHT_PINK)
-        # Get a list of all the game controllers that are plugged in
         joysticks = arcade.get_joysticks()
-        # If we have a game controller plugged in, grab it and
-        # make an instance variable out of it.
+
         if joysticks:
             self.joystick = joysticks[0]
             self.joystick.open()
@@ -87,7 +83,29 @@ class MyGame(arcade.Window):
         self.ball.position_x = x
         self.ball.position_y = y
 
+    def on_key_press(self, symbol: int, modifiers: int):
+        self.ball.position_x = x
+        self.ball.position_y = y
+
     def update(self, delta_time):
+        self.ball.update()
+
+        def on_key_press(self, key, modifiers):
+            if key == arcade.key.LEFT:
+                self.ball.change_x = -MOVEMENT_SPEED
+            elif key == arcade.key.RIGHT:
+                self.ball.change_x = MOVEMENT_SPEED
+            elif key == arcade.key.UP:
+                self.ball.change_y = MOVEMENT_SPEED
+            elif key == arcade.key.DOWN:
+                self.ball.change_y = -MOVEMENT_SPEED
+
+        def on_key_release(self, key, modifiers):
+            """ Called whenever a user releases a key. """
+            if key == arcade.key.LEFT or key == arcade.key.RIGHT:
+                self.ball.change_x = 0
+            elif key == arcade.key.UP or key == arcade.key.DOWN:
+                self.ball.change_y = 0
         # Update the position according to the game controller
         if self.joystick:
             # "dead zone"
@@ -105,16 +123,11 @@ class MyGame(arcade.Window):
         self.ball.update()
 # Monkey eating bananas
 
+
 def main():
     window = MyGame(640, 480, "The bouncy ball")
     arcade.run()
 
-import arcade
-
-arcade.open_window(300, 300, "Sound Demo")
-laser_sound = arcade.load_sound(":resources:sounds/fall2.wav")
-arcade.play_sound(laser_sound)
-arcade.run()
 
 main()
 
