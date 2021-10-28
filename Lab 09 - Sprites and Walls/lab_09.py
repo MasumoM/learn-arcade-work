@@ -122,6 +122,10 @@ class MyGame(arcade.Window):
     def on_mouse_press(self, x, y, button, modifiers):
         """ Called whenever the mouse button is clicked. """
 
+        # baby image from "FlyClipart": https://flyclipart.com/free-clipart-baby-crying-qubodup-crying-baby-clipart-677733
+        # watermelon image from SimilarPNG: https://similarpng.com/watermelon-fruit-is-sweet-on-transparent-background-png/
+        # watermelon basket sourced from sunpng: https://www.subpng.com/png-9ct45h/download.html
+
         # Create a bullet
         bullet = arcade.Sprite(":resources:images/space_shooter/laserBlue01.png", SPRITE_SCALING_LASER)
 
