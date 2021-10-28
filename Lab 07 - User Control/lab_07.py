@@ -83,10 +83,6 @@ class MyGame(arcade.Window):
         self.ball.position_x = x
         self.ball.position_y = y
 
-    def on_key_press(self, symbol: int, modifiers: int):
-        self.ball.position_x = x
-        self.ball.position_y = y
-
     def update(self, delta_time):
         self.ball.update()
 
