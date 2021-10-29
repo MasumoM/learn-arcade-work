@@ -49,7 +49,6 @@ class MyGame(arcade.Window):
 
             coin = arcade.Sprite("banana_3.png", SPRITE_SCALING_COIN)
             # banana image from "KissClip art": https://www.kissclipart.com/banana-clipart-banana-animation-awporm/
-            # Position the coin
             coin.center_x = random.randrange(SCREEN_WIDTH)
             coin.center_y = random.randrange(SCREEN_HEIGHT)
 
@@ -75,6 +74,8 @@ class MyGame(arcade.Window):
 
         coins_hit_list = arcade.check_for_collision_with_list(self.player_sprite,
                                                               self.coin_list)
+        if key == arcade.key.SPACE:
+            arcade.play_sound(self.laser_sound)
 
         for coin in coins_hit_list:
             coin.remove_from_sprite_lists()
