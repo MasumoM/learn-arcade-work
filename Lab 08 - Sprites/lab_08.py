@@ -42,7 +42,7 @@ class MyGame(arcade.Window):
 
     def __init__(self):
         # Call the parent class initializer
-        super().__init__(SCREEN_WIDTH, SCREEN_HEIGHT, "Sprite Example")
+        super().__init__(SCREEN_WIDTH, SCREEN_HEIGHT, )
 
         # Variables that will hold sprite lists
         self.player_list = None
@@ -80,6 +80,7 @@ class MyGame(arcade.Window):
             # banana image from "KissClip art": https://www.kissclipart.com/banana-clipart-banana-animation-awporm/
             # image from "pngwing":https://www.pngwing.com/en/search?q=banana+Gif
             # image from "giphy": https://giphy.com/stickers/yellow-smoothie-banana-Ifyl6EMTA1E48HopRt
+            # image "rotten banana 8 from "anatunez": https://www.anatunez.com/logos
             coin.center_x = random.randrange(SCREEN_WIDTH)
             coin.center_y = random.randrange(SCREEN_HEIGHT)
             coin.change_x = random.randrange(-3, 4)
@@ -88,10 +89,14 @@ class MyGame(arcade.Window):
             # Add the coin to the lists
             self.coin_list.append(coin)
 
+
     def on_draw(self):
         arcade.start_render()
         self.coin_list.draw()
         self.player_list.draw()
+
+        if len(self.coin_list) == 0:
+            arcade.draw_text("GAME OVER", 50, 50, arcade.color.WHITE, 80)
 
         # Put the text on the screen.
         output = f"Score: {self.score}"
