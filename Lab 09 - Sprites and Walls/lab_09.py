@@ -2,6 +2,7 @@ import random
 import arcade
 
 SPRITE_SCALING = 0.5
+SPRITE_SCALING_BOX = 0.5
 
 DEFAULT_SCREEN_WIDTH = 800
 DEFAULT_SCREEN_HEIGHT = 600
@@ -15,9 +16,7 @@ PLAYER_MOVEMENT_SPEED = 7
 class MyGame(arcade.Window):
 
     def __init__(self, width, height, title):
-        """
-        Initializer
-        """
+
         super().__init__(width, height, title, resizable=True)
 
         # Sprite lists
@@ -32,25 +31,195 @@ class MyGame(arcade.Window):
         self.camera_gui = arcade.Camera(DEFAULT_SCREEN_WIDTH, DEFAULT_SCREEN_HEIGHT)
 
     def setup(self):
-
-        # Sprite lists
+        arcade.set_background_color(arcade.color.AMAZON)
         self.player_list = arcade.SpriteList()
         self.wall_list = arcade.SpriteList()
 
-        # Set up the player
-        self.player_sprite = arcade.Sprite(":resources:images/animated_characters/female_person/femalePerson_idle.png",
-                                           scale=0.4)
+        self.player_sprite = arcade.Sprite("tenor_3.gif",
+                                           scale=0.1)
+        # Image from: Behance "https://www.behance.net/gallery/98363413/Bullet-Echo-heroes-animation"
         self.player_sprite.center_x = 256
         self.player_sprite.center_y = 512
         self.player_list.append(self.player_sprite)
 
-        for x in range(200, 1650, 210):
-            for y in range(0, 1600, 64):
-                if random.randrange(5) > 0:
-                    wall = arcade.Sprite(":crates.png", SPRITE_SCALING)
-                    wall.center_x = x
-                    wall.center_y = y
-                    self.wall_list.append(wall)
+        wall = arcade.Sprite("boxCrate_double.png", SPRITE_SCALING_BOX)
+        wall.center_x = 90
+        wall.center_y = 20
+        self.wall_list.append(wall)
+
+        wall = arcade.Sprite("boxCrate_double.png", SPRITE_SCALING_BOX)
+        wall.center_x = 30
+        wall.center_y = 20
+        self.wall_list.append(wall)
+
+        wall = arcade.Sprite("boxCrate_double.png", SPRITE_SCALING_BOX)
+        wall.center_x = -25
+        wall.center_y = 20
+        self.wall_list.append(wall)
+
+        wall = arcade.Sprite("boxCrate_double.png", SPRITE_SCALING_BOX)
+        wall.center_x = -25
+        wall.center_y = 20
+        self.wall_list.append(wall)
+
+        wall = arcade.Sprite("boxCrate_double.png", SPRITE_SCALING_BOX)
+        wall.center_x = -80
+        wall.center_y = 20
+        self.wall_list.append(wall)
+
+        wall = arcade.Sprite("boxCrate_double.png", SPRITE_SCALING_BOX)
+        wall.center_x = -140
+        wall.center_y = 20
+        self.wall_list.append(wall)
+
+        wall = arcade.Sprite("boxCrate_double.png", SPRITE_SCALING_BOX)
+        wall.center_x = -200
+        wall.center_y = 20
+        self.wall_list.append(wall)
+
+        wall = arcade.Sprite("boxCrate_double.png", SPRITE_SCALING_BOX)
+        wall.center_x = -260
+        wall.center_y = 20
+        self.wall_list.append(wall)
+
+        wall = arcade.Sprite("boxCrate_double.png", SPRITE_SCALING_BOX)
+        wall.center_x = -320
+        wall.center_y = 20
+        self.wall_list.append(wall)
+
+        wall = arcade.Sprite("boxCrate_double.png", SPRITE_SCALING_BOX)
+        wall.center_x = -380
+        wall.center_y = 20
+        self.wall_list.append(wall)
+
+        wall = arcade.Sprite("boxCrate_double.png", SPRITE_SCALING_BOX)
+        wall.center_x = -440
+        wall.center_y = 20
+        self.wall_list.append(wall)
+
+        wall = arcade.Sprite("boxCrate_double.png", SPRITE_SCALING_BOX)
+        wall.center_x = -440
+        wall.center_y = 80
+        self.wall_list.append(wall)
+
+        wall = arcade.Sprite("boxCrate_double.png", SPRITE_SCALING_BOX)
+        wall.center_x = -440
+        wall.center_y = 140
+        self.wall_list.append(wall)
+
+        wall = arcade.Sprite("boxCrate_double.png", SPRITE_SCALING_BOX)
+        wall.center_x = -440
+        wall.center_y = 200
+        self.wall_list.append(wall)
+
+        wall = arcade.Sprite("boxCrate_double.png", SPRITE_SCALING_BOX)
+        wall.center_x = -440
+        wall.center_y = 260
+        self.wall_list.append(wall)
+
+        wall = arcade.Sprite("boxCrate_double.png", SPRITE_SCALING_BOX)
+        wall.center_x = -440
+        wall.center_y = 300
+        self.wall_list.append(wall)
+
+        wall = arcade.Sprite("boxCrate_double.png", SPRITE_SCALING_BOX)
+        wall.center_x = -440
+        wall.center_y = 360
+        self.wall_list.append(wall)
+
+        wall = arcade.Sprite("boxCrate_double.png", SPRITE_SCALING_BOX)
+        wall.center_x = -440
+        wall.center_y = 400
+        self.wall_list.append(wall)
+
+        wall = arcade.Sprite("boxCrate_double.png", SPRITE_SCALING_BOX)
+        wall.center_x = -440
+        wall.center_y = 460
+        self.wall_list.append(wall)
+
+        wall = arcade.Sprite("boxCrate_double.png", SPRITE_SCALING_BOX)
+        wall.center_x = -440
+        wall.center_y = 500
+        self.wall_list.append(wall)
+
+        wall = arcade.Sprite("boxCrate_double.png", SPRITE_SCALING_BOX)
+        wall.center_x = -440
+        wall.center_y = 560
+        self.wall_list.append(wall)
+
+        wall = arcade.Sprite("boxCrate_double.png", SPRITE_SCALING_BOX)
+        wall.center_x = -440
+        wall.center_y = 600
+        self.wall_list.append(wall)
+
+        wall = arcade.Sprite("boxCrate_double.png", SPRITE_SCALING_BOX)
+        wall.center_x = -440
+        wall.center_y = 660
+        self.wall_list.append(wall)
+
+        wall = arcade.Sprite("boxCrate_double.png", SPRITE_SCALING_BOX)
+        wall.center_x = -440
+        wall.center_y = 700
+        self.wall_list.append(wall)
+
+        wall = arcade.Sprite("boxCrate_double.png", SPRITE_SCALING_BOX)
+        wall.center_x = -440
+        wall.center_y = 760
+        self.wall_list.append(wall)
+
+        wall = arcade.Sprite("boxCrate_double.png", SPRITE_SCALING_BOX)
+        wall.center_x = -440
+        wall.center_y = 800
+        self.wall_list.append(wall)
+
+        wall = arcade.Sprite("boxCrate_double.png", SPRITE_SCALING_BOX)
+        wall.center_x = -440
+        wall.center_y = 860
+        self.wall_list.append(wall)
+
+        wall = arcade.Sprite("boxCrate_double.png", SPRITE_SCALING_BOX)
+        wall.center_x = -440
+        wall.center_y = 900
+        self.wall_list.append(wall)
+
+        wall = arcade.Sprite("boxCrate_double.png", SPRITE_SCALING_BOX)
+        wall.center_x = -440
+        wall.center_y = 960
+        self.wall_list.append(wall)
+
+        wall = arcade.Sprite("boxCrate_double.png", SPRITE_SCALING_BOX)
+        wall.center_x = -440
+        wall.center_y = 1000
+        self.wall_list.append(wall)
+
+        wall = arcade.Sprite("boxCrate_double.png", SPRITE_SCALING_BOX)
+        wall.center_x = -440
+        wall.center_y = 1060
+        self.wall_list.append(wall)
+
+        wall = arcade.Sprite("boxCrate_double.png", SPRITE_SCALING_BOX)
+        wall.center_x = -440
+        wall.center_y = 1100
+        self.wall_list.append(wall)
+
+        for x in range(153, 650, 64):
+            wall = arcade.Sprite("boxCrate_double.png", SPRITE_SCALING_BOX)
+            wall.center_x = x
+            wall.center_y = 20
+            self.wall_list.append(wall)
+
+            # --- Place walls with a list
+        coordinate_list = [[400, 500],
+                           [470, 500],
+                           [400, 570],
+                           [470, 570]]
+
+        # Loop through coordinates
+        for coordinate in coordinate_list:
+            wall = arcade.Sprite("boxCrate_double.png", SPRITE_SCALING_BOX)
+            wall.center_x = coordinate[0]
+            wall.center_y = coordinate[1]
+            self.wall_list.append(wall)
 
         self.physics_engine = arcade.PhysicsEngineSimple(self.player_sprite, self.wall_list)
 
@@ -60,10 +229,8 @@ class MyGame(arcade.Window):
         arcade.start_render()
 
         self.camera_sprites.use()
-
-        # Draw all the sprites.
-        self.wall_list.draw()
         self.player_list.draw()
+        self.wall_list.draw()
 
         self.camera_gui.use()
 
@@ -112,7 +279,6 @@ class MyGame(arcade.Window):
 
 
 def main():
-    """ Main function """
     window = MyGame(DEFAULT_SCREEN_WIDTH, DEFAULT_SCREEN_HEIGHT, SCREEN_TITLE)
     window.setup()
     arcade.run()
