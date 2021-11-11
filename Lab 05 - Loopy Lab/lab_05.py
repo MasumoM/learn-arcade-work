@@ -33,6 +33,7 @@ def draw_section_2():
             else:
                 arcade.draw_rectangle_filled(x, y, 5, 5, arcade.color.BLACK)
 
+
 def draw_section_3():
     for row in range(30):
         for column in range(30):
@@ -42,6 +43,7 @@ def draw_section_3():
                 arcade.draw_rectangle_filled(x, y, 5, 5, arcade.color.WHITE)
             else:
                 arcade.draw_rectangle_filled(x, y, 5, 5, arcade.color.BLACK)
+
 
 def draw_section_4():
     for row in range(30):
@@ -53,6 +55,7 @@ def draw_section_4():
             else:
                 arcade.draw_rectangle_filled(x, y, 5, 5, arcade.color.BLACK)
 
+
 def draw_section_5():
     for column in range(30):
         for row in range(column + 1):
@@ -60,12 +63,14 @@ def draw_section_5():
             y =row * 10 + 305
             arcade.draw_rectangle_filled(x, y, 5, 5, arcade.color.WHITE)
 
+
 def draw_section_6():
     for row in range(30):
         for column in range(30 - row):
             x = column * 10 + 305
             y = row * 10 + 305
             arcade.draw_rectangle_filled(x, y, 5, 5, arcade.color.WHITE)
+
 
 def draw_section_7():
     for row in range(30):
@@ -81,6 +86,7 @@ def draw_section_8():
             x = (29 - column) * 10 + 905
             y = row * 10 + 305
             arcade.draw_rectangle_filled(x, y, 5, 5, arcade.color.WHITE)
+
 
 def main():
     # Create a window

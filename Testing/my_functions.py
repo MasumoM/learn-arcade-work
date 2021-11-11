@@ -13,17 +13,27 @@ def main():
 
     key = "Narcissa Falkwing"
 
-    current_list_position = 0
-    while current_list_position < len(name_list) and name_list[current_list_position] != key:
-        current_list_position += 1
+    lower_bound = len(name_list) - 1
+    found = False
+    while lower_bound <= upper_bound and not found:
+        middle_pos = (lower_bound + upper_bound) // 2
 
-    if current_list_position < len(name_list):
-        print("Found at", current_list_position)
+        if name_list[middle_pos] < key:
+            lower_bound = middle_pos + 1
+        elif name_list[middle_pos] > key:
+            upper_bound = middle_pos - 1
+        else:
+            found = True
 
-    if current_list_position == len(name_list):
-        print("Not Found.")
+    if found:
+        print("Found at position: ", middle_pos)
 
-    print(current_list_position)
+    if not found:
+        print("Not Found")
+
+        log2(n) # Log base two of n
+
+
 
 
 main()

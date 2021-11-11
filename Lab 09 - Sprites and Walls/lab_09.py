@@ -1,195 +1,120 @@
 import random
 import arcade
-import math
-import os
 
-SPRITE_SCALING_PLAYER = 0.5
-SPRITE_SCALING_COIN = 0.2
-SPRITE_SCALING_LASER = 0.8
-COIN_COUNT = 50
+SPRITE_SCALING = 0.5
 
-SCREEN_WIDTH = 800
-SCREEN_HEIGHT = 600
-SCREEN_TITLE = "Sprites and Bullets Aimed Example"
+DEFAULT_SCREEN_WIDTH = 800
+DEFAULT_SCREEN_HEIGHT = 600
+SCREEN_TITLE = "Attack"
 
-BULLET_SPEED = 5
-
-window = None
+VIEWPORT_MARGIN = 220
+CAMERA_SPEED = 0.1
+PLAYER_MOVEMENT_SPEED = 7
 
 
 class MyGame(arcade.Window):
-    """ Main application class. """
 
-    class Explosion(arcade.Sprite):
-        """ This class creates an explosion animation """
+    def __init__(self, width, height, title):
+        """
+        Initializer
+        """
+        super().__init__(width, height, title, resizable=True)
 
-        def __init__(self, texture_list):
-            super().__init__()
-
-            # Start at the first frame
-            self.current_texture = 0
-            self.textures = texture_list
-
-        def update(self):
-
-            # Update to the next frame of the animation. If we are at the end
-            # of our frames, then delete this sprite.
-            self.current_texture += 1
-            if self.current_texture < len(self.textures):
-                self.set_texture(self.current_texture)
-            else:
-                self.remove_from_sprite_lists()
-
-    def __init__(self):
-        """ Initializer """
-        # Call the parent class initializer
-        super().__init__(SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_TITLE)
-
-        # Set the working directory (where we expect to find files) to the same
-        # directory this .py file is in. You can leave this out of your own
-        # code, but it is needed to easily run the examples using "python -m"
-        # as mentioned at the top of this program.
-        file_path = os.path.dirname(os.path.abspath(__file__))
-        os.chdir(file_path)
-
-        # Variables that will hold sprite lists
+        # Sprite lists
         self.player_list = None
-        self.coin_list = None
-        self.bullet_list = None
-        self.explosions_list = None
+        self.wall_list = None
 
-        # Set up the player info
         self.player_sprite = None
-        self.score = 0
-        self.score_text = None
 
-        # Load sounds. Sounds from kenney.nl
-        self.gun_sound = arcade.sound.load_sound(":resources:sounds/laser1.wav")
-        self.hit_sound = arcade.sound.load_sound(":resources:sounds/phaseJump1.wav")
+        self.physics_engine = None
 
-        arcade.set_background_color(arcade.color.AMAZON)
+        self.camera_sprites = arcade.Camera(DEFAULT_SCREEN_WIDTH, DEFAULT_SCREEN_HEIGHT)
+        self.camera_gui = arcade.Camera(DEFAULT_SCREEN_WIDTH, DEFAULT_SCREEN_HEIGHT)
 
     def setup(self):
 
-        """ Set up the game and initialize the variables. """
-
         # Sprite lists
         self.player_list = arcade.SpriteList()
-        self.coin_list = arcade.SpriteList()
-        self.bullet_list = arcade.SpriteList()
+        self.wall_list = arcade.SpriteList()
 
         # Set up the player
-        self.score = 0
-
-        # Image from kenney.nl
-        self.player_sprite = arcade.Sprite("character.png", SPRITE_SCALING_PLAYER)
-        self.player_sprite.center_x = 50
-        self.player_sprite.center_y = 70
+        self.player_sprite = arcade.Sprite(":resources:images/animated_characters/female_person/femalePerson_idle.png",
+                                           scale=0.4)
+        self.player_sprite.center_x = 256
+        self.player_sprite.center_y = 512
         self.player_list.append(self.player_sprite)
 
-        # Create the coins
-        for i in range(COIN_COUNT):
+        for x in range(200, 1650, 210):
+            for y in range(0, 1600, 64):
+                if random.randrange(5) > 0:
+                    wall = arcade.Sprite(":crates.png", SPRITE_SCALING)
+                    wall.center_x = x
+                    wall.center_y = y
+                    self.wall_list.append(wall)
 
-            # Create the coin instance
-            # Coin image from kenney.nl
-            coin = arcade.Sprite(":resources:images/items/coinGold.png", SPRITE_SCALING_COIN)
+        self.physics_engine = arcade.PhysicsEngineSimple(self.player_sprite, self.wall_list)
 
-            # Position the coin
-            coin.center_x = random.randrange(SCREEN_WIDTH)
-            coin.center_y = random.randrange(120, SCREEN_HEIGHT)
-
-            # Add the coin to the lists
-            self.coin_list.append(coin)
-
-        # Set the background color
         arcade.set_background_color(arcade.color.AMAZON)
 
     def on_draw(self):
-        """ Render the screen. """
-
-        # This command has to happen before we start drawing
         arcade.start_render()
 
+        self.camera_sprites.use()
+
         # Draw all the sprites.
-        self.coin_list.draw()
-        self.bullet_list.draw()
+        self.wall_list.draw()
         self.player_list.draw()
 
-        # Put the text on the screen.
-        output = f"Score: {self.score}"
-        arcade.draw_text(output, 10, 20, arcade.color.WHITE, 14)
+        self.camera_gui.use()
 
-    def on_mouse_press(self, x, y, button, modifiers):
-        """ Called whenever the mouse button is clicked. """
+        arcade.draw_rectangle_filled(self.width // 2,
+                                     20,
+                                     self.width,
+                                     40,
+                                     arcade.color.ALMOND)
+        text = f"Scroll value: ({self.camera_sprites.position[0]:5.1f}, " \
+               f"{self.camera_sprites.position[1]:5.1f})"
+        arcade.draw_text(text, 10, 10, arcade.color.BLACK_BEAN, 20)
 
-        # baby image from "FlyClipart": https://flyclipart.com/free-clipart-baby-crying-qubodup-crying-baby-clipart-677733
-        # watermelon image from SimilarPNG: https://similarpng.com/watermelon-fruit-is-sweet-on-transparent-background-png/
-        # watermelon basket sourced from sunpng: https://www.subpng.com/png-9ct45h/download.html
+    def on_key_press(self, key, modifiers):
 
-        # Create a bullet
-        bullet = arcade.Sprite(":resources:images/space_shooter/laserBlue01.png", SPRITE_SCALING_LASER)
+        if key == arcade.key.UP:
+            self.player_sprite.change_y = PLAYER_MOVEMENT_SPEED
+        elif key == arcade.key.DOWN:
+            self.player_sprite.change_y = -PLAYER_MOVEMENT_SPEED
+        elif key == arcade.key.LEFT:
+            self.player_sprite.change_x = -PLAYER_MOVEMENT_SPEED
+        elif key == arcade.key.RIGHT:
+            self.player_sprite.change_x = PLAYER_MOVEMENT_SPEED
 
-        # Position the bullet at the player's current location
-        start_x = self.player_sprite.center_x
-        start_y = self.player_sprite.center_y
-        bullet.center_x = start_x
-        bullet.center_y = start_y
+    def on_key_release(self, key, modifiers):
 
-        # Get from the mouse the destination location for the bullet
-        # IMPORTANT! If you have a scrolling screen, you will also need
-        # to add in self.view_bottom and self.view_left.
-        dest_x = x
-        dest_y = y
-
-        # Do math to calculate how to get the bullet to the destination.
-        # Calculation the angle in radians between the start points
-        # and end points. This is the angle the bullet will travel.
-        x_diff = dest_x - start_x
-        y_diff = dest_y - start_y
-        angle = math.atan2(y_diff, x_diff)
-
-        # Angle the bullet sprite so it doesn't look like it is flying
-        # sideways.
-        bullet.angle = math.degrees(angle)
-        print(f"Bullet angle: {bullet.angle:.2f}")
-
-        # Taking into account the angle, calculate our change_x
-        # and change_y. Velocity is how fast the bullet travels.
-        bullet.change_x = math.cos(angle) * BULLET_SPEED
-        bullet.change_y = math.sin(angle) * BULLET_SPEED
-
-        # Add the bullet to the appropriate lists
-        self.bullet_list.append(bullet)
+        if key == arcade.key.UP or key == arcade.key.DOWN:
+            self.player_sprite.change_y = 0
+        elif key == arcade.key.LEFT or key == arcade.key.RIGHT:
+            self.player_sprite.change_x = 0
 
     def on_update(self, delta_time):
-        """ Movement and game logic """
+        self.physics_engine.update()
 
-        # Call update on all sprites
-        self.bullet_list.update()
+        self.scroll_to_player()
 
-        # Loop through each bullet
-        for bullet in self.bullet_list:
+    def scroll_to_player(self):
 
-            # Check this bullet to see if it hit a coin
-            hit_list = arcade.check_for_collision_with_list(bullet, self.coin_list)
+        position = self.player_sprite.center_x - self.width / 2, \
+            self.player_sprite.center_y - self.height / 2
+        self.camera_sprites.move_to(position, CAMERA_SPEED)
 
-            # If it did, get rid of the bullet
-            if len(hit_list) > 0:
-                bullet.remove_from_sprite_lists()
+    def on_resize(self, width, height):
 
-            # For every coin we hit, add to the score and remove the coin
-            for coin in hit_list:
-                coin.remove_from_sprite_lists()
-                self.score += 1
-
-            # If the bullet flies off-screen, remove it.
-            if bullet.bottom > self.width or bullet.top < 0 or bullet.right < 0 or bullet.left > self.width:
-                bullet.remove_from_sprite_lists()
+        self.camera_sprites.resize(int(width), int(height))
+        self.camera_gui.resize(int(width), int(height))
 
 
 def main():
-    game = MyGame()
-    game.setup()
+    """ Main function """
+    window = MyGame(DEFAULT_SCREEN_WIDTH, DEFAULT_SCREEN_HEIGHT, SCREEN_TITLE)
+    window.setup()
     arcade.run()
 
 
