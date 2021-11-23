@@ -208,6 +208,12 @@ class MyGame(arcade.Window):
             wall.center_y = 20
             self.wall_list.append(wall)
 
+        for x in range(174, 800, 64):
+            wall = arcade.Sprite("boxCrate_double.png", SPRITE_SCALING_BOX)
+            wall.center_x = x
+            wall.center_y = 1100
+            self.wall_list.append(wall)
+
             # --- Place walls with a list
         coordinate_list = [[400, 500],
                            [470, 500],
