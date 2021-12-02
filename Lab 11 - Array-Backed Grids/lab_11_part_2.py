@@ -1,10 +1,13 @@
 import arcade
 
+# Set how many rows and columns we will have
 ROW_COUNT = 10
 COLUMN_COUNT = 10
+
 WIDTH = 20
 HEIGHT = 20
 MARGIN = 5
+
 SCREEN_WIDTH = (WIDTH + MARGIN) * COLUMN_COUNT + MARGIN
 SCREEN_HEIGHT = (HEIGHT + MARGIN) * ROW_COUNT + MARGIN
 
@@ -14,27 +17,28 @@ class MyGame(arcade.Window):
     Main application class.
     """
 
-    def init(self, width, height):
+    def __init__(self, width, height):
         """
         Set up the application.
         """
-        super().init(width, height)
+        super().__init__(width, height)
         self.grid = []
         for row in range(ROW_COUNT):
-            # Add an empty array that will hold each cell
-            # in this row
             self.grid.append([])
             for column in range(COLUMN_COUNT):
-                self.grid[row].append(0)  # Append a cell
+                self.grid[row].append(0)
 
         arcade.set_background_color(arcade.color.BLACK)
-def on_draw(self):
+
+    def on_draw(self):
+        """
+        Render the screen.
+        """
         arcade.start_render()
 
         # Draw the grid
         for row in range(ROW_COUNT):
             for column in range(COLUMN_COUNT):
-                # Figure out what color to draw the box
                 if self.grid[row][column] == 1:
                     color = arcade.color.GREEN
                 else:
@@ -52,8 +56,6 @@ def on_draw(self):
         row = y // (HEIGHT + MARGIN)
 
         print(f"Click coordinates: ({x}, {y}). Grid coordinates: ({row}, {column})")
-
-        # Make sure we are on-grid. It is possible to click in the upper right
         # corner in the margin and go to a grid location that doesn't exist
         if row < ROW_COUNT and column < COLUMN_COUNT:
 
@@ -63,12 +65,35 @@ def on_draw(self):
             else:
                 self.grid[row][column] = 0
 
+            # Flip the location between 1 and 0.
+            if self.grid[row + 1][column] == 0:
+                self.grid[row + 1][column] = 1
+            else:
+                self.grid[row + 1][column] = 0
+
+            # Flip the location between 1 and 0.
+            if self.grid[row][column + 1] == 0:
+                self.grid[row][column + 1] = 1
+            else:
+                self.grid[row][column + 1] = 0
+
+            # Flip the location between 1 and 0.
+            if self.grid[row][column - 1] == 0:
+                self.grid[row][column - 1] = 1
+            else:
+                self.grid[row][column - 1] = 0
+
+            # Flip the location between 1 and 0.
+            if self.grid[row - 1][column] == 0:
+                self.grid[row - 1][column] = 1
+            else:
+                self.grid[row - 1][column] = 0
+
         GREEN = 0
         for row in range(ROW_COUNT):
             for column in range(COLUMN_COUNT):
                 if self.grid[row][column] == 1:
                     GREEN += 1
-        print("Total of", GREEN, "cells are selected.")
 
         ROW = ROW_COUNT
         for row in range(ROW_COUNT):
@@ -86,7 +111,7 @@ def on_draw(self):
 
         continuous_count = 0
         if row < ROW_COUNT and column < COLUMN_COUNT:
-            if self.gris[row] == 1:
+            if self.grid[row] == 1:
                 continuous_count += 1
 
         if row < ROW_COUNT and column < COLUMN_COUNT:

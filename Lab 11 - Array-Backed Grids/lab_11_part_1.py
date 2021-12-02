@@ -65,12 +65,35 @@ class MyGame(arcade.Window):
             else:
                 self.grid[row][column] = 0
 
+            # Flip the location between 1 and 0.
+            if self.grid[row + 1][column] == 0:
+                self.grid[row + 1][column] = 1
+            else:
+                self.grid[row + 1][column] = 0
+
+            # Flip the location between 1 and 0.
+            if self.grid[row][column + 1] == 0:
+                self.grid[row][column + 1] = 1
+            else:
+                self.grid[row][column + 1] = 0
+
+            # Flip the location between 1 and 0.
+            if self.grid[row][column - 1] == 0:
+                self.grid[row][column - 1] = 1
+            else:
+                self.grid[row][column - 1] = 0
+
+            # Flip the location between 1 and 0.
+            if self.grid[row - 1][column] == 0:
+                self.grid[row - 1][column] = 1
+            else:
+                self.grid[row - 1][column] = 0
+
         GREEN = 0
         for row in range(ROW_COUNT):
             for column in range(COLUMN_COUNT):
                 if self.grid[row][column] == 1:
                     GREEN += 1
-        print("Total of", GREEN, "cells are selected.")
 
         ROW = ROW_COUNT
         for row in range(ROW_COUNT):
@@ -88,14 +111,14 @@ class MyGame(arcade.Window):
 
         continuous_count = 0
         if row < ROW_COUNT and column < COLUMN_COUNT:
-            if self.gris[row] == 1:
+            if self.grid[row] == 1:
                 continuous_count += 1
 
         if row < ROW_COUNT and column < COLUMN_COUNT:
-                if self.grid[row] == 0:
-                    if continuous_count > 2:
-                        print("There are", continuous_count, "continuous blocks selected in row",
-                              ROW, "and column", COLUMN, ".")
+            if self.grid[row] == 0:
+                if continuous_count > 2:
+                    print("There are", continuous_count, "continuous blocks selected in row",
+                          ROW, "and column", COLUMN, ".")
 
 def main():
 
