@@ -51,16 +51,11 @@ class MyGame(arcade.Window):
                 arcade.draw_rectangle_filled(x, y, WIDTH, HEIGHT, color)
 
     def on_mouse_press(self, x, y, button, modifiers):
-        """
-        Called when the user presses a mouse button.
-        """
 
         column = x // (WIDTH + MARGIN)
         row = y // (HEIGHT + MARGIN)
 
         print(f"Click coordinates: ({x}, {y}). Grid coordinates: ({row}, {column})")
-
-        # Make sure we are on-grid. It is possible to click in the upper right
         # corner in the margin and go to a grid location that doesn't exist
         if row < ROW_COUNT and column < COLUMN_COUNT:
 
@@ -70,6 +65,37 @@ class MyGame(arcade.Window):
             else:
                 self.grid[row][column] = 0
 
+        GREEN = 0
+        for row in range(ROW_COUNT):
+            for column in range(COLUMN_COUNT):
+                if self.grid[row][column] == 1:
+                    GREEN += 1
+        print("Total of", GREEN, "cells are selected.")
+
+        ROW = ROW_COUNT
+        for row in range(ROW_COUNT):
+            if self.grid[row] == 1:
+                GREEN += 1
+                ROW += 1
+        print("Row", ROW, "has", GREEN, "cells selected.")
+
+        COLUMN = COLUMN_COUNT
+        for column in range(COLUMN_COUNT):
+            if self.grid[row] == 1:
+                GREEN += 1
+                COLUMN += 1
+        print("Column", COLUMN, "has", GREEN, "cells selected.")
+
+        continuous_count = 0
+        if row < ROW_COUNT and column < COLUMN_COUNT:
+            if self.gris[row] == 1:
+                continuous_count += 1
+
+        if row < ROW_COUNT and column < COLUMN_COUNT:
+                if self.grid[row] == 0:
+                    if continuous_count > 2:
+                        print("There are", continuous_count, "continuous blocks selected in row",
+                              ROW, "and column", COLUMN, ".")
 
 def main():
 

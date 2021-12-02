@@ -1,0 +1,12 @@
+Masumo Mwenyi
+12/01/2021
+
+Questions:
+
+1] I used many different methods to make my programs work. in deciing what
+methoods to use i looked at ehat i needed to get done and then looked at what
+was the best way to do it. i used lists to organise my code to make sure it
+makes sense when i go back to it and ananalyse it or when i try to explain
+something to someone else which was effective. I used loops to make my code more
+seamles and easy to engage with. with loops i was able to eliminate tidious
+repetitive coding by just making a list that took the workload out of my hands.
