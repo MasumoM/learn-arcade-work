@@ -156,7 +156,6 @@ class MyGame(arcade.Window):
                     rotten.remove_from_sprite_lists()
                     self.score -= 1
                     arcade.play_sound(self.rotten_sound)
-
                     # banana image from "KissClip art": https://www.kissclipart.com/banana-clipart-banana-animation-awporm/
                     # image from "pngwing":https://www.pngwing.com/en/search?q=banana+Gif
                     # image from "giphy": https://giphy.com/stickers/yellow-smoothie-banana-Ifyl6EMTA1E48HopRt
