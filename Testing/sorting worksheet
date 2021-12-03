@@ -6,7 +6,7 @@ my_list[6] = my_list[7]
 my_list[7] = temp
 
 my_list = [55, 41, 52, 68, 45, 27, 40, 25, 37, 26]
-
+finished
 2. Write code to swap the values 2 and 27.
 my_list = [27, 32, 18,  2, 11, 57, 14, 38, 19, 91]
 

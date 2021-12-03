@@ -1,12 +1,68 @@
 Masumo Mwenyi
+Quantitive reasoning Reflection
 12/01/2021
 
-Questions:
+Answer to Question 1
 
-1] I used many different methods to make my programs work. in deciing what
-methoods to use i looked at ehat i needed to get done and then looked at what
-was the best way to do it. i used lists to organise my code to make sure it
-makes sense when i go back to it and ananalyse it or when i try to explain
-something to someone else which was effective. I used loops to make my code more
-seamles and easy to engage with. with loops i was able to eliminate tidious
-repetitive coding by just making a list that took the workload out of my hands.
+I use many different methods to make my programs work. In deciding what
+strategies to use, I looked at what was needed to get done and then looked at
+the best way to do it. I use lists to organize my code to make sure it
+makes sense when I go back to it or try to explain it to someone else.
+If I want to write code that will only run based on a specific condition, I use
+if statements. I use loops to run a section of code; however, we often like to
+minimize tedious programing. Classes allow me to Group related data together
+to simplify the code. There are many more methods, but deciding what to use first
+is to identify what I need my code to do. If, for example, I want to have crate
+boxes in a line, instead of programming for each, I can use a loop to call the
+code for the one crate as many times as I like.
+
+
+Answer to Question 2
+
+When communicating solutions to another programmer when writing the code, I always say
+what I am trying to get. Every programming session is a word document explaining
+or trying to explain a concept, the only difference being the language I am using to
+program. Using variables matters in a code because it makes the code more flexible,
+thus making the names important for the other programer to visualize what I am
+doing. I want to drow a tree instead of having much code for each tree.
+When trying to draw a forest, I can create a variable named "draw_tree." Doing
+this ensures the other programmer understands what I am doing without seeing the code in its entirety different to if I call the variable "design_one."
+in addition, having comments helps explain a step in the code in short sentences
+to minimize communication barriers and makes debugging much easier even though
+it is not mandatory, which plays a perfect role in the structure. The code structure is significant because it makes the code readable to most programmers
+when collaborating by making sure what code is written goes in the correct order.
+For example, if drawing a forest it is better to start with the ground the work up
+to the birds cause it makes it easy to see the development of the code.
+
+Answer to Question 3
+
+when programig, the code failing to work is part of the procces. becuase it's
+easy to miss a step or miss small but key componett to the code debuging and
+knowing where to go is important. to evaluate the acuracy of the code and to
+make sure i catch issues in advance, i run the code very often and expect the
+result i am aiming for. when something did not work i start by locating the origin
+of the problem, then using my notes of the code, identify what the code should have
+done. this is why good notess are important. notes help me identify exacly what
+i wanted and then from there revisee the steps i did to get what i wanted.
+to determine if the returned data is corect i chech my result, if the result is
+what i wrote code for that is great. hweer sometimes it may seem that the results
+are correct when they aren't thus looking at the results but allso analyzyng the
+code itslesf helps.
+
+Answer to Question 2
+
+Using numerical methods has limitations becuse of how it works. with numerical
+methods there is no greys. for the code to work there is a way and only one or
+a couple ways it works,a and anything else does not count, this is a problem
+because the reality works differently for there are many ways of doing a certain
+thing or solving a certain problem. for example rating how good a book is based
+on the sales of suh book. it is prevelent that statistics do not tell the whole
+story which is a proble with numerical methods because just becuase the book
+had high sales does not man it is the best for it can be becuase of the markting
+the releasing agent did and how successful such marketing were. we cannot just
+repalce humans with algorythms becuase algorythims do not assume or betray their
+conceps for diferent one. computers do not assume for a missing link, they always
+need to have full information to fuction where humans can work on limited amount
+of information and figure out what is missing.
+
+
