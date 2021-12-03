@@ -65,29 +65,33 @@ class MyGame(arcade.Window):
             else:
                 self.grid[row][column] = 0
 
-            # Flip the location between 1 and 0.
-            if self.grid[row + 1][column] == 0:
-                self.grid[row + 1][column] = 1
-            else:
-                self.grid[row + 1][column] = 0
+            if row < 9:
+                # Flip the location between 1 and 0.
+                if self.grid[row + 1][column] == 0:
+                    self.grid[row + 1][column] = 1
+                else:
+                    self.grid[row + 1][column] = 0
 
-            # Flip the location between 1 and 0.
-            if self.grid[row][column + 1] == 0:
-                self.grid[row][column + 1] = 1
-            else:
-                self.grid[row][column + 1] = 0
+            if column < 9:
+                # Flip the location between 1 and 0.
+                if self.grid[row][column + 1] == 0:
+                    self.grid[row][column + 1] = 1
+                else:
+                    self.grid[row][column + 1] = 0
 
-            # Flip the location between 1 and 0.
-            if self.grid[row][column - 1] == 0:
-                self.grid[row][column - 1] = 1
-            else:
-                self.grid[row][column - 1] = 0
+            if column < 9:
+                # Flip the location between 1 and 0.
+                if self.grid[row][column - 1] == 0:
+                    self.grid[row][column - 1] = 1
+                else:
+                    self.grid[row][column - 1] = 0
 
-            # Flip the location between 1 and 0.
-            if self.grid[row - 1][column] == 0:
-                self.grid[row - 1][column] = 1
-            else:
-                self.grid[row - 1][column] = 0
+            #Flip the location between 1 and 0.
+            if row < 9:
+                if self.grid[row - 1][column] == 0:
+                    self.grid[row - 1][column] = 1
+                else:
+                    self.grid[row - 1][column] = 0
 
         GREEN = 0
         for row in range(ROW_COUNT):
@@ -95,30 +99,7 @@ class MyGame(arcade.Window):
                 if self.grid[row][column] == 1:
                     GREEN += 1
 
-        ROW = ROW_COUNT
-        for row in range(ROW_COUNT):
-            if self.grid[row] == 1:
-                GREEN += 1
-                ROW += 1
-        print("Row", ROW, "has", GREEN, "cells selected.")
 
-        COLUMN = COLUMN_COUNT
-        for column in range(COLUMN_COUNT):
-            if self.grid[row] == 1:
-                GREEN += 1
-                COLUMN += 1
-        print("Column", COLUMN, "has", GREEN, "cells selected.")
-
-        continuous_count = 0
-        if row < ROW_COUNT and column < COLUMN_COUNT:
-            if self.grid[row] == 1:
-                continuous_count += 1
-
-        if row < ROW_COUNT and column < COLUMN_COUNT:
-            if self.grid[row] == 0:
-                if continuous_count > 2:
-                    print("There are", continuous_count, "continuous blocks selected in row",
-                          ROW, "and column", COLUMN, ".")
 
 def main():
 

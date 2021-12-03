@@ -18,7 +18,7 @@ class Banana(arcade.Sprite):
         self.center_x = random.randrange(SCREEN_WIDTH)
 
     def update(self):
-        self.center_y -= 0.5
+        self.center_y -= 1.5
 
         if self.top < 0:
             self.reset_pos()
@@ -77,9 +77,9 @@ class MyGame(arcade.Window):
 
     def setup(self):
         # Sprite lists
-        self.player_list = arcade.sprite_list()
-        self.banana_list = arcade.sprite_list()
-        self.rotten_list = arcade.sprite_list()
+        self.player_list = arcade.SpriteList()
+        self.banana_list = arcade.SpriteList()
+        self.rotten_list = arcade.SpriteList()
 
         # Score
         self.score = 0
@@ -95,26 +95,26 @@ class MyGame(arcade.Window):
         # Create the coins
         for i in range(BANANA_COUNT):
 
-            banana = banana("banana_7.gif", SPRITE_SCALING_COIN)
+            banana = Banana("banana_7.gif", SPRITE_SCALING_COIN)
 
             banana.center_x = random.randrange(SCREEN_WIDTH)
             banana.center_y = random.randrange(SCREEN_HEIGHT)
-            banana.change_x = random.randrange(-3, 4)
-            banana.change_y = random.randrange(-3, 4)
+            banana.change_x = random.randrange(-5, 6)
+            banana.change_y = random.randrange(-5, 6)
 
             # Add the coin to the lists
-            self.coin_list.append(banana)
+            self.banana_list.append(banana)
 
         for i in range(BANANA_COUNT):
-            rotten = rotten("rotten_banana_8.gif", SPRITE_SCALING_COIN)
+            rotten = Rotten("rotten_banana_8.gif", SPRITE_SCALING_COIN)
 
-            banana.center_x = random.randrange(SCREEN_WIDTH)
-            banana.center_y = random.randrange(SCREEN_HEIGHT)
-            banana.change_x = random.randrange(-3, 4)
-            banana.change_y = random.randrange(-3, 4)
+            rotten.center_x = random.randrange(SCREEN_WIDTH)
+            rotten.center_y = random.randrange(SCREEN_HEIGHT)
+            rotten.change_x = random.randrange(-3, 4)
+            rotten.change_y = random.randrange(-3, 4)
 
             # Add the coin to the lists
-            self.coin_list.append(rotten)
+            self.rotten_list.append(rotten)
 
     def on_draw(self):
         arcade.start_render()
@@ -137,29 +137,30 @@ class MyGame(arcade.Window):
 
     def update(self, delta_time):
         if len(self.banana_list) > 0:
-            self.banana_list.update()
-            self.rotten_list.update()
+            if len(self.rotten_list) >= 25:
+                self.banana_list.update()
+                self.rotten_list.update()
 
-        hit_list = arcade.check_for_collision_with_list(self.player_sprite,
-                                                        self.banana_list)
+                hit_list = arcade.check_for_collision_with_list(self.player_sprite,
+                                                            self.banana_list)
 
-        for banana in hit_list:
-            banana.remove_from_sprite_lists()
-            self.score += 1
-            arcade.play_sound(self.banana_sound)
+                for banana in hit_list:
+                    banana.remove_from_sprite_lists()
+                    self.score += 1
+                    arcade.play_sound(self.banana_sound)
 
-        hit_list = arcade.check_for_collision_with_list(self.player_sprite,
-                                                        self.rotten_list)
+                hit_list = arcade.check_for_collision_with_list(self.player_sprite,
+                                                                self.rotten_list)
 
-        for rotten in hit_list:
-            rotten.remove_from_sprite_lists()
-            self.score += -1
-            arcade.play_sound(self.rotten_sound)
+                for rotten in hit_list:
+                    rotten.remove_from_sprite_lists()
+                    self.score -= 1
+                    arcade.play_sound(self.rotten_sound)
 
-            # banana image from "KissClip art": https://www.kissclipart.com/banana-clipart-banana-animation-awporm/
-            # image from "pngwing":https://www.pngwing.com/en/search?q=banana+Gif
-            # image from "giphy": https://giphy.com/stickers/yellow-smoothie-banana-Ifyl6EMTA1E48HopRt
-            # image "rotten banana 8 from "anatunez": https://www.anatunez.com/logos
+                    # banana image from "KissClip art": https://www.kissclipart.com/banana-clipart-banana-animation-awporm/
+                    # image from "pngwing":https://www.pngwing.com/en/search?q=banana+Gif
+                    # image from "giphy": https://giphy.com/stickers/yellow-smoothie-banana-Ifyl6EMTA1E48HopRt
+                    # image "rotten banana 8 from "anatunez": https://www.anatunez.com/logos
 
 
 def main():
