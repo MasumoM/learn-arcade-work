@@ -1,48 +1,60 @@
 import re
 
-# This function takes in a line of text and returns
-# a list of words in the line.
+
 def split_line(line):
-    return re.findall('[A-Za-z]+(?:\'[A-Za-z]+)?',line)
+    return re.findall('[A-Za-z]+(?:\'[A-Za-z]+)?', line)
 
 
-key = "Morgiana the Shrew"
-current_list_position = 0
+def main():
+    my_file = open("dictionary.txt")
+    dictionary_list = []
+    for line in my_file:
+        line = line.strip()
+        dictionary_list.append(line)
+    my_file.close()
+    print("--- Linear Search ---")
 
-while current_list_position < len(AliceInWonderLand200.txt) and name_list[current_list_position] != key:
+    alice_file = open("AliceInWonderLand200.txt")
+    line_number = 0
+    for line in alice_file:
+        line_number += 1
+        word_list = split_line(line)
+        for word in word_list:
+            # Start at the beginning of the list
+            current_list_position = 0
+            while current_list_position < len(dictionary_list) and dictionary_list[
+                current_list_position] != word.upper():
+                current_list_position += 1
 
-    # Advance to the next item in the list
-    current_list_position += 1
+            if current_list_position == len(dictionary_list):
+                print("line " + str(line_number) + " Possible Misspelled word: " + word)
+    alice_file.close()
 
-if current_list_position < len(name_list):
-    print("The name is at position", current_list_position)
-else:
-    print("The name was not in the list.")
+    print("--- Binary Search ---")
+
+    alice_file = open("AliceInWonderLand200.txt")
+    line_number = 0
+    for line in alice_file:
+        line_number += 1
+        word_list = split_line(line)
+        for word in word_list:
+            lower_bound = 0
+            upper_bound = len(dictionary_list) - 1
+            found = False
+
+            while lower_bound <= upper_bound and not found:
+
+                middle_pos = (lower_bound + upper_bound) // 2
+
+                if dictionary_list[middle_pos] < word.upper():
+                    lower_bound = middle_pos + 1
+                elif dictionary_list[middle_pos] > word.upper():
+                    upper_bound = middle_pos - 1
+                else:
+                    found = True
+            if not found:
+                print("line " + str(line_number) + " Possible Misspelled word: " + word)
+    alice_file.close()
 
 
-key = "Morgiana the Shrew"
-lower_bound = 0
-upper_bound = len(name_list)-1
-found = False
-
-# Loop until we find the item, or our upper/lower bounds meet
-while lower_bound <= upper_bound and not found:
-
-    # Find the middle position
-    middle_pos = (lower_bound + upper_bound) // 2
-
-    # Figure out if we:
-    # move up the lower bound, or
-    # move down the upper bound, or
-    # we found what we are looking for
-    if name_list[middle_pos] < key:
-        lower_bound = middle_pos + 1
-    elif name_list[middle_pos] > key:
-        upper_bound = middle_pos - 1
-    else:
-        found = True
-
-if found:
-    print( "The name is at position", middle_pos)
-else:
-    print( "The name was not in the list." )
+main()
