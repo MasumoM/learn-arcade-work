@@ -9,7 +9,6 @@ class Room:
         self.south = south
         self.west = west
 
-
 # These are all the rooms of the building
 def main():
     room_list = []
