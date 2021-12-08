@@ -65,33 +65,6 @@ class MyGame(arcade.Window):
             else:
                 self.grid[row][column] = 0
 
-            if row < 9:
-                # Flip the location between 1 and 0.
-                if self.grid[row + 1][column] == 0:
-                    self.grid[row + 1][column] = 1
-                else:
-                    self.grid[row + 1][column] = 0
-
-            if column < 9:
-                # Flip the location between 1 and 0.
-                if self.grid[row][column + 1] == 0:
-                    self.grid[row][column + 1] = 1
-                else:
-                    self.grid[row][column + 1] = 0
-
-            if column < 9:
-                # Flip the location between 1 and 0.
-                if self.grid[row][column - 1] == 0:
-                    self.grid[row][column - 1] = 1
-                else:
-                    self.grid[row][column - 1] = 0
-
-            # Flip the location between 1 and 0.
-            if row < 9:
-                if self.grid[row - 1][column] == 0:
-                    self.grid[row - 1][column] = 1
-                else:
-                    self.grid[row - 1][column] = 0
 
         GREEN = 0
         for row in range(ROW_COUNT):
