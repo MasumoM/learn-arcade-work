@@ -51,23 +51,33 @@ If you include any code for problems 4-7 you are doing it wrong.
 0   18   25   29   36   40    47   58   74   92 (Final)
 
 
-6. Show how the following numbers can be sorted using the INSERTION sort. (Note: If you think the 0 gets immediately sorted into position, you are doing it wrong. Go back and re-read how this sort works.)
+6. Show how the following numbers can be sorted using the INSERTION sort. (Note:
+If you think the 0 gets immediately sorted into position, you are doing it wrong.
+Go back and re-read how this sort works.)
 
 74   92   18   47   40   58    0   36   29   25
 74   92   18   47   40   58    0   36   29   25 (Nothing happens)
 18   74   92   47   40   58    0   36   29   25 (Inserted 18 to [0])
 18   47   74   92   40   58    0   36   29   25 (Inserted 47 to [1])
-18(Inserted 47 to [1])
-18 (Inserted 40 to [1])
-(Inserted 58 to [3])
-(inserted 0 to [0])
-(Inserted 36 to [2])
-(inserted 29 to [2])
-(Inserted 25 to [2])
+18   40   47   74   92   58    0   36   29   25 (Inserted 47 to [1])
+18   40   47   58   74   92    0   36   29   25 (Inserted 58 to [3])
+0   18   40   47   58   74   92   36   29   25 (Inserted 0 to [0])
+0   18   36   40   47   58   74   92   29   25(inserted 36 to [2])
+0   18   29   36   40   47   58   74   92   25(Inserted 29 to [2])
+0   18   25   29   36   40   47   58   74   92(inserted 25 to [2])
+
 
 7. Show how the following numbers can be sorted using the insertion sort:
 
-    37   11   14   50   24    7   17   88   99    9
+37   11   14   50   24    7   17   88   99    9
+11   37   14   50   24    7   17   88   99    9(inserted 11 to [0])
+11   14   37   50   24    7   17   88   99    9(inserted 14 to [1])
+11   14   37   50   24    7   17   88   99    9(nothing happens)
+11   14   24   37   50    7   17   88   99    9(inserted 24 to [2])
+7   11   14   24   37   50    17   88   99    9(inserted 7 to 0)
+7   11   14   17   24   37    50   88   99    9(inserted 17 to [2])
+7   9    11   14   17   24    37   50   88    99(inserted 9 to [1])
+
 
 8. Explain what `min_pos` does in the selection sort.
 
