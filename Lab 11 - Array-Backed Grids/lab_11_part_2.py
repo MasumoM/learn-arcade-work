@@ -13,9 +13,7 @@ SCREEN_HEIGHT = (HEIGHT + MARGIN) * ROW_COUNT + MARGIN
 
 
 class MyGame(arcade.Window):
-    """
-    Main application class.
-    """
+
 
     def __init__(self, width, height):
 
