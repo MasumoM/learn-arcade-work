@@ -93,12 +93,12 @@ class MyGame(arcade.Window):
                     continuous_count += 1
 
                 elif continuous_count > 2:
-                    print("There have", continuous_count, "continuous blocks "
+                    print("There are", continuous_count, "continuous blocks "
                                                           "selected in row", row, "and column", column, ".")
                     continuous_count = 0
 
             if continuous_count > 2:
-                print("There have", continuous_count, "continuous blocks "
+                print("There are", continuous_count, "continuous blocks "
                                                       "selected in row", row, "and column", column, ".")
 
             continuous_count = 0
