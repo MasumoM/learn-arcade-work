@@ -1,27 +1,34 @@
+import random
+
 class Room:
 
     # This is a class that represents the character of the game.
 
-    def __init__(self, description, north, west, south, east, up, down, right,):
+    def __init__(self, description, north, west, south, east):
         self.description = description
         self.north = north
         self.east = east
         self.south = south
         self.west = west
-        self.up = up
-        self.down = down
-        self.right = right
 
 # Item class, it holds all the stuff
 class Item:
 
-    def __init__(self, room_number, description, name, ):
+    def __init__(self, room_number, description, name):
         self.room_number = room_number
         self.description = description
         self.name = name
 
 
-# These are all the rooms of the building
+
+class Ability:
+    def __init__(self, win, weight, speed, health ):
+        self.win = win
+        self.wight = weight
+        self.speed = speed
+        self.health = health
+
+# These are ll the rooms of the building
 def main():
     room_list = []
     # This is outside
@@ -31,12 +38,12 @@ def main():
 
     # this is room one (the lobby)
     room = Room("You are in the lobby. There are couches and TVs are still playing. \n"
-                "There are drinks on the table and the room is very dark ", 4, 2, 0, None, None, None)
+                "There are drinks on the table and the room is very dark ", 4, 2, 0, None)
     room_list.append(room)
 
     # This is room two (the vip room)
     room = Room("You are in the VIP room, there is gold on the table, a gun, and a bag of cash.\n "
-                "The gun only has a few bullets. The couches are comfortable but you can leave the house if you like,\n"
+                "The gun only has 2 bullets. The couches are comfortable but you can leave the house if you like,\n"
                 "get a drink and rest, or continue to explore the house, whatever you want.", 5, None, None, 1)
     room_list.append(room)
 
@@ -79,7 +86,7 @@ def main():
     # This is room 9 ( the roof top)
     room = Room("You are on the roof. you are safe here so you can now wait for the rescue helicopter.\n"
                 "light up a flare to be seen by the helicopter, otherwise they will miss you.\n"
-                "", None, 11, None, 8, 12, None, None)
+                "", None, 11, None, 8,)
     room_list.append(room)
 
     # This is room 10 (The west balcony)
@@ -98,11 +105,39 @@ def main():
     room = Room(" You are in the secret room twelve. this room has a lot of things you can take with you to escape.\n"
                 "you however can only go right out of the door. \n it's not stable once you get out of the door.\n"
                 "you can say in here and eat stock up all the precious stuff inside or you can leave right now with\n"
-                "nothing on you.", None, None, None, None, 0, 9, 17)
-    room_list.append()
+                "nothing on you.", None, None, None, None)
+    room_list.append(room)
     # If they pick zero they die
 
     current_room = 0
+
+#The item list starts here"
+
+    item_list = []
+    # room 1" work on the ability
+    item = Item(1, "This is booze that you can drink", "drinks")
+    item_list.append(item)
+
+    # This is couch in room 1
+    item = Item(1, "This is a couch you can sit on to relax", "couch")
+    item_list.append(item)
+
+    # "In room 2"/ there is Gold, Gun(has 2 bullets), and bag of cash
+    # this is Gun in room 2
+    item = Item(2, "This is a gun that you can use for protection", "pistol")
+    item_list.append(item)
+
+    # This is Gold in room 2
+    item = Item(2, "There's gold. its a bit heavy but worth it. who knows\n"
+                   "whats gonna happen to the economy after you win right\n"
+                   "gold", None)
+    item_list.append(item)
+
+    # This is Cash Bag in room 2
+    item = Item(2, "There is a bag of cash, you can take it for use later or leave it\n"
+                   "cash bag", None)
+    item_list.append(item)
+
 
     done = False
     while not done:
@@ -149,6 +184,10 @@ def main():
                 print("No path")
             else:
                 current_room = next_room
+        elif user_input.lower() == "pick up":
+            if item.room == current.room:
+                player.dg = player.dmg + 50
+
 
 
 main()
