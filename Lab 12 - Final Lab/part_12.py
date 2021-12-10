@@ -2,24 +2,36 @@ class Room:
 
     # This is a class that represents the character of the game.
 
-    def __init__(self, description, north, west, south, east, ):
+    def __init__(self, description, north, west, south, east, up, down, right,):
         self.description = description
         self.north = north
         self.east = east
         self.south = south
         self.west = west
+        self.up = up
+        self.down = down
+        self.right = right
+
+# Item class, it holds all the stuff
+class Item:
+
+    def __init__(self, room_number, description, name, ):
+        self.room_number = room_number
+        self.description = description
+        self.name = name
+
 
 # These are all the rooms of the building
 def main():
     room_list = []
     # This is outside
-    room = Room("You are outside the building. There is chaos outside and people are running everywhere. "
+    room = Room("You are outside. There is chaos outside and people are running everywhere. "
                 "\nBuildings are burning down so find an escape!", 1, None, 0, None)
     room_list.append(room)
 
     # this is room one (the lobby)
-    room = Room("You are in the lobby. There are couches and TVs re still playing. \n"
-                "There are drinks on the table and the room is very dark ", 4, 2, 0, None)
+    room = Room("You are in the lobby. There are couches and TVs are still playing. \n"
+                "There are drinks on the table and the room is very dark ", 4, 2, 0, None, None, None)
     room_list.append(room)
 
     # This is room two (the vip room)
@@ -29,7 +41,7 @@ def main():
     room_list.append(room)
 
     # This is room 3 (The Storage)
-    room = Room("You are in the storage room. There is bags of food and a few dead bodies.\n "
+    room = Room("You are in the storage room. There are bags of food and a few dead bodies.\n "
                 "The bags seem to be in good shape so you can take some if you like.", 6, None, None, 10)
     room_list.append(room)
 
@@ -66,7 +78,8 @@ def main():
 
     # This is room 9 ( the roof top)
     room = Room("You are on the roof. you are safe here so you can now wait for the rescue helicopter.\n"
-                "light up a flare to be seen by the helicopter, otherwise they will miss you.", None, 11, None, 8)
+                "light up a flare to be seen by the helicopter, otherwise they will miss you.\n"
+                "", None, 11, None, 8, 12, None, None)
     room_list.append(room)
 
     # This is room 10 (The west balcony)
@@ -80,6 +93,14 @@ def main():
                 "You do not have a lot of time to mess about, and make sure you have resources you may need\n"
                 "before you go outside the building. Good luck and god speed.", None, 8, 4, 9)
     room_list.append(room)
+
+    # This is the Hidden room 12.
+    room = Room(" You are in the secret room twelve. this room has a lot of things you can take with you to escape.\n"
+                "you however can only go right out of the door. \n it's not stable once you get out of the door.\n"
+                "you can say in here and eat stock up all the precious stuff inside or you can leave right now with\n"
+                "nothing on you.", None, None, None, None, 0, 9, 17)
+    room_list.append()
+    # If they pick zero they die
 
     current_room = 0
 
