@@ -36,12 +36,12 @@ def main():
     print("Welcome to roof access. the apocalypse is getting worse and the\n"
           "government have decided to burn the whole town because of the zombie overload\n"
           "most people have left but a few remain including you!")
-    print("there is one chopper left in the whole town and its in the Mako hotel,"
+    print("There is one chopper left in the whole town and its in the Mako hotel,"
           "\nit's up to you to find the chopper and escape with your life or possibly\n"
           "find some precious possessions of your own.")
     print()
     print("Make sure you pay close attention to everything and wish yourself some luck!")
-    print("When you take some things and or leave some things they will impact you n the\n"
+    print("When you take some things and or leave some things they will impact you in the\n"
           "future, so be sure what you take and what you do!"
           "\n SOO, yeah. well don't stand out here get in side waiting to die,\n"
           "get inside, the door is to your north")
@@ -53,7 +53,7 @@ def main():
     # This is outside
     room = Room("You are outside. There is chaos outside and people\n"
                 "are running everywhere. "
-                "\nBuildings are burning down. so find an escape!\n"
+                "\nBuildings are burning down. So, find an escape!\n"
                 "get inside quick", 1, None, None, None)
     room_list.append(room)
 
@@ -91,7 +91,7 @@ def main():
     room_list.append(room)
 
     # This is room 6 (The dark room)
-    room = Room("oops this room is very dark, i cant's see anything. Can you? right you cant\n"
+    room = Room("Oops this room is very dark, i cant's see anything. Can you? right you cant\n"
                 "You can't see anything but by going around you may find useful tools and resources.\n"
                 "do you want to search the room? I would if i were you. and then you can leave after\n"
                 "", None, None, 3, 10)
@@ -143,7 +143,7 @@ def main():
 
     # This is the room 13
     # It only goes to the end room 14 is the end
-    room = Room("you are on the helipad, you have done a great job.\n"
+    room = Room("You are on the helipad, you have done a great job.\n"
                 "now! you don't happen to have a gallon of gas on you /n"
                 "for this chopper. anyway lets get out of here", 14, None, 7, None)
     room_list.append(room)
@@ -183,14 +183,14 @@ def main():
 
     # Room 4
     # This is the sword
-    choice = Character(4, "we found a sword"
+    choice = Character(4, "We found a sword"
                           "\nif you want extra protection you can take it.", 50,
                        None, "sword", )
     choice_list.append(choice)
 
     # Room 5
     # If you drink again it will reduce your health
-    choice = Character(5, "Heck yes, we got some coffee, energy will be up i the shot stopper\n"
+    choice = Character(5, "Heck yes, we got some coffee, energy will be up in the stands like a shot stopper\n"
                       "\nget it? shot stoper?.......Nevermind"
                       "\nit will boost your energy. But too-much is not good.", 40, 10, "coffee",)
     choice_list.append(choice)
@@ -446,8 +446,8 @@ def main():
                     choice.health += player.damage
                     print()
                     print("Money never hurt")
-                    print("we will have to come with loss of", choice.health, "of health\n"
-                                                                               "but it's worth it. you can buy a gym after")
+                    print("we will have to come with loss of", choice.health,
+                          "of health\n""but it's worth it. you can buy a gym after")
                     if choice.damage == 30:
                         print()
                         print("That's heavy")
