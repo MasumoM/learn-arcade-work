@@ -80,6 +80,7 @@ Go back and re-read how this sort works.)
 
 
 8. Explain what `min_pos` does in the selection sort.
+min_pos in selection sort helps the algorythm ide
 
 9. Explain what `cur_pos` does in the selection sort.
 
